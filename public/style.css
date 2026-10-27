@@ -1,0 +1,537 @@
+/* =========================================================
+   STUDENT PROGRESS TRACKER - Professional UI theme
+   Works with: index.html, progress.html, script.js, progress.js
+   Change the colours in :root to re-theme the whole project.
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+/* ---------- Design tokens ---------- */
+:root {
+    --brand-1: #4f46e5;          /* indigo */
+    --brand-2: #06b6d4;          /* cyan   */
+    --brand-3: #8b5cf6;          /* violet */
+    --brand-dark: #3730a3;
+
+    --ink: #0f172a;
+    --text: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --track: #e8ecf4;
+
+    --bg: #f5f7fd;
+    --surface: #ffffff;
+
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --danger-line: #fecaca;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+
+    --grad: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-3) 55%, var(--brand-2) 100%);
+
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 10px 30px -8px rgba(79, 70, 229, 0.18), 0 4px 12px rgba(15, 23, 42, 0.05);
+    --shadow-lg: 0 20px 40px -12px rgba(79, 70, 229, 0.28), 0 8px 16px rgba(15, 23, 42, 0.06);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------- Page background ---------- */
+body {
+    position: relative;
+    min-height: 100vh;
+    padding: 56px 20px 72px;
+    font-family: "Plus Jakarta Sans", "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Soft decorative glow behind the content */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+body::before {
+    top: -140px;
+    left: -120px;
+    width: 420px;
+    height: 420px;
+    background: var(--brand-1);
+}
+
+body::after {
+    bottom: -160px;
+    right: -120px;
+    width: 460px;
+    height: 460px;
+    background: var(--brand-2);
+}
+
+/* ---------- Headings ---------- */
+h1 {
+    margin-bottom: 32px;
+    text-align: center;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+h2 {
+    margin: 48px 0 20px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* ---------- Form card ---------- */
+form {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 36px 34px 30px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+}
+
+/* Gradient strip on top of the card */
+form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--grad);
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 13px 15px;
+    font-family: inherit;
+    font-size: 0.96rem;
+    color: var(--ink);
+    background: #f8fafc;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #cbd5e1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: #ffffff;
+    border-color: var(--brand-1);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.14);
+}
+
+/* Hide number spinners for a cleaner look */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ---------- Main button ---------- */
+button {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    background: var(--grad);
+    background-size: 160% 100%;
+    background-position: 0% 0%;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.55);
+    transition: background-position 0.4s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-position: 100% 0%;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px -8px rgba(79, 70, 229, 0.6);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(79, 70, 229, 0.4);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---------- Progress list ---------- */
+#progressList {
+    display: grid;
+    gap: 18px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ---------- Progress card ---------- */
+#progressList > div {
+    position: relative;
+    padding: 24px 26px 22px 30px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Gradient accent bar on the left */
+#progressList > div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--brand-1), var(--brand-2));
+}
+
+#progressList > div:hover {
+    transform: translateY(-3px);
+    border-color: #c7d2fe;
+    box-shadow: var(--shadow-lg);
+}
+
+#progressList h3 {
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+#progressList p {
+    margin: 4px 0;
+    font-size: 0.93rem;
+    color: var(--muted);
+}
+
+/* Course name shown as a small tag-like line */
+#progressList h3 + p {
+    display: inline-block;
+    margin: 4px 0 10px;
+    padding: 3px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--brand-dark);
+    background: #eef2ff;
+    border-radius: 999px;
+}
+
+/* ---------- Progress bar ---------- */
+.progress-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.progress-head strong {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.progress-track {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    margin-top: 8px;
+    background: var(--track);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.progress-fill {
+    position: relative;
+    display: block;
+    height: 100%;
+    min-width: 0;
+    background: var(--grad);
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: grow 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Moving shine on the bar */
+.progress-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.45) 50%,
+        transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: shine 2.6s ease-in-out infinite;
+}
+
+@keyframes grow {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes shine {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+#progressList .updated {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+#progressList .updated::before {
+    content: "\1F552  ";
+}
+
+.empty {
+    padding: 36px 20px;
+    text-align: center;
+    color: var(--muted);
+    background: var(--surface);
+    border: 2px dashed var(--line);
+    border-radius: var(--radius);
+}
+
+/* ---------- Card buttons ---------- */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.btn {
+    width: auto;
+    padding: 9px 20px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    box-shadow: none;
+    background-size: auto;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background: var(--grad);
+    box-shadow: 0 6px 14px -6px rgba(79, 70, 229, 0.6);
+}
+
+.btn-primary:hover:not(:disabled) {
+    box-shadow: 0 10px 18px -6px rgba(79, 70, 229, 0.65);
+}
+
+.btn-ghost {
+    color: var(--text);
+    background: #ffffff;
+    border-color: var(--line);
+}
+
+.btn-ghost:hover {
+    color: var(--brand-1);
+    background: #eef2ff;
+    border-color: #c7d2fe;
+}
+
+.btn-danger {
+    color: var(--danger);
+    background: #ffffff;
+    border-color: var(--danger-line);
+}
+
+.btn-danger:hover {
+    background: var(--danger-bg);
+    border-color: #f87171;
+}
+
+/* Inputs inside the edit card */
+#progressList input {
+    margin-bottom: 14px;
+}
+
+.form-error {
+    min-height: 1.2em;
+    margin: 0 0 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--danger);
+}
+
+/* ---------- Navigation link ---------- */
+.view-link {
+    display: block;
+    width: fit-content;
+    max-width: 640px;
+    margin: 26px auto;
+    padding: 10px 24px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: var(--brand-1);
+    background: #ffffff;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.view-link:hover {
+    color: #ffffff;
+    background: var(--grad);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.top-link {
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+    body {
+        padding: 36px 14px 56px;
+    }
+
+    form {
+        padding: 28px 20px 22px;
+    }
+
+    #progressList > div {
+        padding: 20px 18px 18px 24px;
+    }
+
+    .card-actions {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        flex: 1;
+    }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

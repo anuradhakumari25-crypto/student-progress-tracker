@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Progress Tracker</title>
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Student Progress Tracker</h1>
+
+    <!-- Student Progress Form -->
+    <form id="progressForm">
+
+        <!-- Student Name -->
+        <label for="studentName">Student Name</label>
+        <input
+            type="text"
+            id="studentName"
+            required
+        >
+
+        <!-- Course Name -->
+        <label for="courseName">Course Name</label>
+        <input
+            type="text"
+            id="courseName"
+            required
+        >
+
+        <!-- Completion Percentage -->
+        <label for="completionPercentage">
+            Completion Percentage
+        </label>
+
+        <input
+            type="number"
+            id="completionPercentage"
+            min="0"
+            max="100"
+            required
+        >
+
+        <!-- Submit Button -->
+        <button type="submit">
+            Add Progress
+        </button>
+
+    </form>
+
+
+    <!-- Progress Cards will appear here -->
+   <a class="view-link" href="progress.html">View All Progress →</a>
+
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
